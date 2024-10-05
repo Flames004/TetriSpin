@@ -31,7 +31,7 @@ Welcome to **TetriSpin**, a modern twist on the classic Tetris game! Built using
 ## **Setup**
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/TetriSpin.git
+    git clone https://github.com/Flames004/TetriSpin.git
     ```
 2. Open `index.html` in your preferred browser.
 
