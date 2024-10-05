@@ -1,5 +1,7 @@
 # **TetriSpin**
 
+<img src="tetris-image.png" alt="TetriSpin Game" width="150" align="right">
+
 Welcome to **TetriSpin**, a modern twist on the classic Tetris game! Built using HTML, CSS, JavaScript, and the Canvas API, this game offers smooth gameplay, colorful visuals, and an interactive grid system. The objective is simple: stack and clear rows of blocks as they fall, rotating and shifting them to fit together perfectly. But watch out — the pieces will keep coming faster!
 
 ## **Features**
