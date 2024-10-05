@@ -1,0 +1,37 @@
+# Ignore object files and compiled binaries
+*.o
+*.out
+*.exe
+
+# Ignore build directories
+/build/
+bin/
+
+# Ignore C++ cache files
+*.gch
+
+# Ignore debug and log files
+*.log
+*.debug
+
+# Ignore IDE-specific files (e.g., VSCode, CLion)
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.codelite.*
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore CMake and Makefile generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ignore backup or temporary files
+*~
+*.swp
+*.tmp
