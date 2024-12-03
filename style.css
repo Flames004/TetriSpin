@@ -5,16 +5,28 @@
 }
 
 body{
-    background-color: whitesmoke;
+    background-color: peachpuff;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
+    justify-content:center;
+    gap: 30px;
     height: 90vh;
-
 }
 
-#tetris{
+#tetris, #preview{
     background-color: white;
     box-shadow: 0 0 10px 0 lightgrey;
+}
+
+.preview-panel{
+    background: palegreen;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.preview-panel h2{
+    padding: 5px 8px;
 }

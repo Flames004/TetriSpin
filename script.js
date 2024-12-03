@@ -57,8 +57,14 @@ let canvas = document.querySelector("#tetris");
 let ctx = canvas.getContext("2d");  // canvas pen
 ctx.scale(30, 30);
 
+// Preview
+let previewCanvas = document.querySelector("#preview");
+let previewCtx = previewCanvas.getContext("2d");
+previewCtx.scale(30, 30);
+
 let pieceObj = null;
 let grid = generateGrid();
+let nextPiece = generateRandomPiece();
 // console.log(grid); 
 // console.log(pieceObj);
 
@@ -72,11 +78,14 @@ function generateRandomPiece() {
 }
 
 setInterval(newGameState, 500);
+renderPreview();
 
 function newGameState() {
     checkGrid();    // check if there is any row with all colors filled then we need to remove that row and fill it with white so that other pieces can take that place
     if (pieceObj == null) {
-        pieceObj = generateRandomPiece();
+        pieceObj = nextPiece;
+        nextPiece = generateRandomPiece();
+        renderPreview();
         renderPiece();
     }
     moveDown();
@@ -113,6 +122,19 @@ function renderPiece() {
             if (piece[i][j] == 1) {
                 ctx.fillStyle = COLORS[pieceObj.colorIndex];
                 ctx.fillRect(pieceObj.x + j, pieceObj.y + i, 1, 1); //to color the piece
+            }
+        }
+    }
+}
+
+function renderPreview() {
+    previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+    let piece = nextPiece.piece;
+    for (let i = 0; i < piece.length; i++) {
+        for (let j = 0; j < piece[i].length; j++) {
+            if (piece[i][j] == 1) {
+                previewCtx.fillStyle = COLORS[nextPiece.colorIndex];
+                previewCtx.fillRect(j+1, i+2, 1, 1); // Draw each block of the piece
             }
         }
     }
