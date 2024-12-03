@@ -52,7 +52,12 @@ const ROWS = 20;
 const COLS = 10;
 
 let score = 0;
-let scoreboard = document.querySelector("h2");
+let highScore = localStorage.getItem('highScore') || 0;
+let scoreboard = document.querySelector("#score");
+let highScoreboard = document.querySelector("#high-score");
+
+highScoreboard.innerHTML = "High Score: " + highScore;
+
 let canvas = document.querySelector("#tetris");
 let ctx = canvas.getContext("2d");  // canvas pen
 ctx.scale(30, 30);
@@ -101,7 +106,7 @@ function checkGrid() {
         if (allFilled) {
             grid.splice(i, 1);
             grid.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]); // remove the row of colors and shift them down
-            console.log("Grid removed");
+            // console.log("Grid removed");
             count++;
         }
     }
@@ -112,7 +117,15 @@ function checkGrid() {
     else if (count > 3) score += 100;
 
     scoreboard.innerHTML = "Score: " + score;
+    updateHighScore();
+}
 
+function updateHighScore() {
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('highScore', highScore);
+        highScoreboard.innerHTML = "High Score: " + highScore;
+    }
 }
 
 function renderPiece() {
@@ -134,7 +147,7 @@ function renderPreview() {
         for (let j = 0; j < piece[i].length; j++) {
             if (piece[i][j] == 1) {
                 previewCtx.fillStyle = COLORS[nextPiece.colorIndex];
-                previewCtx.fillRect(j+1, i+2, 1, 1); // Draw each block of the piece
+                previewCtx.fillRect(j + 1, i + 2, 1, 1); // Draw each block of the piece
             }
         }
     }
