@@ -15,11 +15,12 @@ body{
 
 #tetris, #preview{
     background-color: white;
-    box-shadow: 0 0 10px 0 lightgrey;
+    box-shadow: 0 0 10px 0 grey;
 }
 
 .preview-panel{
-    background: palegreen;
+    background: palevioletred;
+    padding: 8px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -28,5 +29,5 @@ body{
 }
 
 .preview-panel h2{
-    padding: 5px 8px;
+    padding: 0px 8px 8px 8px;
 }

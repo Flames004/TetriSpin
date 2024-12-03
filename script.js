@@ -55,12 +55,14 @@ let score = 0;
 let highScore = localStorage.getItem('highScore') || 0;
 let scoreboard = document.querySelector("#score");
 let highScoreboard = document.querySelector("#high-score");
-
+let gameInterval;
 highScoreboard.innerHTML = "High Score: " + highScore;
 
 let canvas = document.querySelector("#tetris");
 let ctx = canvas.getContext("2d");  // canvas pen
 ctx.scale(30, 30);
+
+let speed = 500
 
 // Preview
 let previewCanvas = document.querySelector("#preview");
@@ -82,7 +84,7 @@ function generateRandomPiece() {
     return { piece, x, y, colorIndex };
 }
 
-setInterval(newGameState, 500);
+gameInterval = setInterval(newGameState, speed);
 renderPreview();
 
 function newGameState() {
@@ -117,7 +119,14 @@ function checkGrid() {
     else if (count > 3) score += 100;
 
     scoreboard.innerHTML = "Score: " + score;
+    updateSpeed();
     updateHighScore();
+}
+
+function updateSpeed() {
+    speed = Math.max(100, 500 - Math.floor(score / 50) * 50);
+    clearInterval(gameInterval);
+    gameInterval = setInterval(newGameState, speed);
 }
 
 function updateHighScore() {
