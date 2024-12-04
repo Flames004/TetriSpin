@@ -48,6 +48,13 @@ const COLORS = [
     "#8a2be2"
 ]
 
+// Audios
+const moveSound = new Audio('audio/movedown.wav');
+const rotateSound = new Audio('audio/rotate.wav');
+const clearSound = new Audio('audio/scored.wav');
+const gameOverSound = new Audio('audio/game-over.wav');
+const bgSound = new Audio('audio/bg-audio.wav');
+
 const ROWS = 20;
 const COLS = 10;
 
@@ -63,6 +70,36 @@ let ctx = canvas.getContext("2d");  // canvas pen
 ctx.scale(30, 30);
 
 let speed = 500
+
+// Audio Functions
+function startBackgroundAudio() {
+    bgSound.loop = true;
+    bgSound.volume = 0.6;
+    bgSound.play().catch(err => console.error("Background audio autoplay blocked:", err));
+}
+
+startBackgroundAudio();
+
+function playMoveSound() {
+    moveSound.currentTime = 0;
+    moveSound.play();
+}
+
+function playRotateSound() {
+    rotateSound.currentTime = 0;
+    rotateSound.play();
+}
+
+function playClearSound() {
+    clearSound.currentTime = 0;
+    clearSound.play();
+}
+
+function playGameOverSound() {
+    bgSound.pause();
+    gameOverSound.currentTime = 0;
+    gameOverSound.play();
+}
 
 // Preview
 let previewCanvas = document.querySelector("#preview");
@@ -100,6 +137,7 @@ function newGameState() {
 
 function checkGrid() {
     let count = 0;  // for scoring
+    let gridRemoved = false;
     for (let i = 0; i < grid.length; i++) {
         let allFilled = true;
         for (let j = 0; j < grid[i].length; j++) {
@@ -109,10 +147,12 @@ function checkGrid() {
             grid.splice(i, 1);
             grid.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]); // remove the row of colors and shift them down
             // console.log("Grid removed");
+            gridRemoved = true;
             count++;
         }
     }
 
+    if (gridRemoved) playClearSound();
     if (count == 1) score += 10;
     else if (count == 2) score += 30;
     else if (count == 3) score += 50;
@@ -279,15 +319,19 @@ document.addEventListener("keydown", function (e) {
     let key = e.code // the key which is pressed
     if (key == "ArrowDown") {
         moveDown();
+        playMoveSound();
     }
     else if (key == "ArrowLeft") {
         moveLeft();
+        playMoveSound();
     }
     else if (key == "ArrowRight") {
         moveRight();
+        playMoveSound();
     }
     else if (key == "ArrowUp") {
         rotate();
+        playRotateSound();
     }
 })
 
@@ -295,6 +339,7 @@ function showGameOver(score) {
     document.getElementById("final-score").textContent = score;
     document.getElementById("game-over").style.display = "block";
     clearInterval(gameInterval);
+    playGameOverSound();
 }
 
 function closeGameOver() {
@@ -306,4 +351,5 @@ function closeGameOver() {
     nextPiece = generateRandomPiece(); // Generate a new random piece
     gameInterval = setInterval(newGameState, speed); // Restart the game loop
     scoreboard.innerHTML = "Score: " + score; // Update score on screen
+    bgSound.play();
 }
