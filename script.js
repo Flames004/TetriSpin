@@ -121,8 +121,18 @@ function generateRandomPiece() {
     return { piece, x, y, colorIndex };
 }
 
-gameInterval = setInterval(newGameState, speed);
-renderPreview();
+document.querySelector("#start-button").addEventListener("click", () => {
+    const startButton = document.querySelector("#start-button");
+    startButton.style.display = "none"; // Hide the button instantly
+    // Start the game
+    gameInterval = setInterval(newGameState, speed);
+    renderPreview();
+    bgSound.play();
+});
+
+
+// gameInterval = setInterval(newGameState, speed);
+// renderPreview();
 
 function newGameState() {
     checkGrid();    // check if there is any row with all colors filled then we need to remove that row and fill it with white so that other pieces can take that place
