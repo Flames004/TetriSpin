@@ -39,13 +39,13 @@ const SHAPES = [
 
 const COLORS = [
     "#fff",
-    "#000075",
-    "#911eb4",
-    "#aaffc3",
-    "#f58231",
-    "#42d4f4",
-    "#808000",
-    "#fabed4"
+    "#00aaff",
+    "#dc143c",
+    "#32cd32",
+    "#ff4500",
+    "#ff00ff",
+    "#ffea00",
+    "#8a2be2"
 ]
 
 const ROWS = 20;

@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>TetriSpin</title>
 </head>
+
 <body>
+    <h1 id="game-name">Tetri Spin</h1>
     <div class="main">
-        <canvas id="tetris" height="600" width="300"></canvas>
-    </div>
-    <div class="side-panel">
-        <h2 id="score">Score: 0</h2>
-        <h2 id="high-score">High Score: 0</h2>
+        <!-- Score -->
+        <div class="score-panel">
+            <h2 id="score">Score: 0</h2>
+            <h2 id="high-score">High Score: 0</h2>
+        </div>
+
+        <!-- Canvas -->
+        <div class="canvas">
+            <canvas id="tetris" height="600" width="300"></canvas>
+        </div>
+
+        <!-- Preview -->
         <div class="preview-panel">
             <h2>Next</h2>
             <canvas id="preview" height="200" width="150"></canvas>
         </div>
     </div>
-    
+
+
 </body>
 <script src="script.js"></script>
+
 </html>
