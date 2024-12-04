@@ -177,9 +177,7 @@ function moveDown() {
             }
         }
         if (pieceObj.y == 0) {  // if the pieces touch the top of the grid
-            alert("Game Over!!");
-            grid = generateGrid();  // again generate grid of white colors to restart the game
-            score = 0;
+            showGameOver(score);
         }
         pieceObj = null;    // again making the piece null for a new piece
     }
@@ -292,3 +290,20 @@ document.addEventListener("keydown", function (e) {
         rotate();
     }
 })
+
+function showGameOver(score) {
+    document.getElementById("final-score").textContent = score;
+    document.getElementById("game-over").style.display = "block";
+    clearInterval(gameInterval);
+}
+
+function closeGameOver() {
+    // Reset game or restart
+    document.getElementById("game-over").style.display = "none";
+    grid = generateGrid();  // again generate grid of white colors to restart the game
+    score = 0;
+    pieceObj = null;  // Reset the current piece
+    nextPiece = generateRandomPiece(); // Generate a new random piece
+    gameInterval = setInterval(newGameState, speed); // Restart the game loop
+    scoreboard.innerHTML = "Score: " + score; // Update score on screen
+}

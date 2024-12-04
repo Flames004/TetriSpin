@@ -89,3 +89,44 @@ body{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     letter-spacing: 1.5px;
 }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+  
+  .modal h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #f39c12;
+    text-transform: uppercase;
+  }
+  
+  .modal p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .modal button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .modal button:hover {
+    background-color: #c0392b;
+  }
